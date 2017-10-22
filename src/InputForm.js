@@ -5,17 +5,28 @@ class InputForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			inputValue: 100,
-			newValue: 1
+			monthlyVisitors: 1000,
+			monthlyLeads: 10,
+			monthlySales: 100,
+			futureVisitors: 0,
+			futureLeads: 0,
+			futureSales: 0,
+			finalValue: 1
 		};
-	}
-	onInputChange(e) {
-		this.setState({ inputValue: e.target.value });
 	}
 
 	onClick(e) {
-		let calc = _.floor(this.state.inputValue * 3.5);
-		this.setState({ newValue: calc });
+		let futureVisitors = _.floor(this.state.monthlyVisitors * 3.5);
+		this.setState({ futureVisitors });
+		let futureLeads = _.floor(this.state.monthlyLeads * 3.5);
+		this.setState({ futureLeads });
+		let futureSales = _.floor(this.state.monthlySales * 3.5);
+		this.setState({ futureSales });
+		let calc =
+			this.state.monthlyVisitors *
+			this.state.monthlyLeads *
+			this.state.monthlySales;
+		this.setState({ finalValue: calc });
 	}
 
 	render() {
@@ -24,19 +35,38 @@ class InputForm extends Component {
 				<form className="col s12">
 					<div className="row">
 						<div className="input-field col s12">
-							<input id="email" type="email" className="validate" />
-							<label for="email">Email</label>
+							<input
+								id="site-visitors"
+								type="number"
+								value={this.state.monthlyVisitors}
+								onChange={e =>
+									this.setState({ monthlyVisitors: e.target.value })}
+							/>
+							<label>How many website visitors do you receive a month?</label>
 						</div>
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
 							<input
-								id="site-visitors"
+								id="monthly-leads"
 								type="number"
-								value={this.state.inputValue}
-								onChange={this.onInputChange.bind(this)}
+								value={this.state.monthlyLeads}
+								onChange={e => this.setState({ monthlyLeads: e.target.value })}
 							/>
-							<label>How many site visitors?</label>
+							<label>How many leads do you receive a month?</label>
+						</div>
+					</div>
+					<div className="row">
+						<div className="input-field col s12">
+							<input
+								id="monthly-sales"
+								type="number"
+								value={this.state.monthlySales}
+								onChange={e => this.setState({ monthlySales: e.target.value })}
+							/>
+							<label>
+								What is your average monthly sales price per customer?
+							</label>
 						</div>
 					</div>
 				</form>
@@ -47,7 +77,12 @@ class InputForm extends Component {
 					Forecast
 				</button>
 				<p>
-					You could kicking back with {this.state.newValue} visitors soon!
+					You could kicking back with {this.state.futureVisitors} visitors,{' '}
+					{this.state.futureLeads} leads, and {this.state.futureSales} in sales
+					soon!
+				</p>
+				<p>
+					That's worth about ${this.state.finalValue}!
 				</p>
 			</div>
 		);
