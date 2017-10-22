@@ -20,7 +20,7 @@ class InputForm extends Component {
 
 	render() {
 		return (
-			<div className="row">
+			<div className="row center-align">
 				<form className="col s12">
 					<div className="row">
 						<div className="input-field col s12">
