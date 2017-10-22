@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 class InputForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			inputValue: 0
+			inputValue: 100,
+			newValue: 1
 		};
 	}
-	update(e) {
+	onInputChange(e) {
 		this.setState({ inputValue: e.target.value });
+	}
+
+	onClick(e) {
+		let calc = _.floor(this.state.inputValue * 3.5);
+		this.setState({ newValue: calc });
 	}
 
 	render() {
@@ -27,14 +34,20 @@ class InputForm extends Component {
 								id="site-visitors"
 								type="number"
 								value={this.state.inputValue}
-								onChange={this.update.bind(this)}
+								onChange={this.onInputChange.bind(this)}
 							/>
 							<label>How many site visitors?</label>
 						</div>
 					</div>
 				</form>
+				<button
+					className="waves-effect waves-light btn"
+					onClick={this.onClick.bind(this)}
+				>
+					Forecast
+				</button>
 				<p>
-					You could kicking back with {this.state.inputValue} visitors soon!
+					You could kicking back with {this.state.newValue} visitors soon!
 				</p>
 			</div>
 		);
