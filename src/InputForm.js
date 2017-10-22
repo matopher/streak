@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
 
 class InputForm extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			inputValue: 0
+		};
+	}
+	update(e) {
+		this.setState({ inputValue: e.target.value });
+	}
+
 	render() {
 		return (
 			<div className="row">
 				<form className="col s12">
-					<div className="row">
-						<div className="input-field col s6">
-							<input
-								placeholder="Placeholder"
-								id="first_name"
-								type="text"
-								className="validate"
-							/>
-							<label for="first_name">First Name</label>
-						</div>
-						<div className="input-field col s6">
-							<input id="last_name" type="text" className="validate" />
-							<label for="last_name">Last Name</label>
-						</div>
-					</div>
 					<div className="row">
 						<div className="input-field col s12">
 							<input id="email" type="email" className="validate" />
@@ -28,12 +23,19 @@ class InputForm extends Component {
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
-							<input id="site-visitors" type="number" />
+							<input
+								id="site-visitors"
+								type="number"
+								value={this.state.inputValue}
+								onChange={this.update.bind(this)}
+							/>
 							<label>How many site visitors?</label>
 						</div>
 					</div>
-					<a className="waves-effect waves-light btn">Submit</a>
 				</form>
+				<p>
+					You could kicking back with {this.state.inputValue} visitors soon!
+				</p>
 			</div>
 		);
 	}
