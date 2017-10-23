@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
+const style = {
+	largeIcon: {
+		fontSize: '5em'
+	}
+};
+
 class InputForm extends Component {
 	constructor(props) {
 		super(props);
@@ -37,6 +43,7 @@ class InputForm extends Component {
 				<form className="col s12">
 					<div className="row">
 						<div className="input-field col s12">
+							<i class="material-icons prefix indigo-text">show_chart</i>
 							<input
 								id="site-visitors"
 								type="number"
@@ -49,6 +56,7 @@ class InputForm extends Component {
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
+							<i class="material-icons prefix indigo-text">contact_mail</i>
 							<input
 								id="monthly-leads"
 								type="number"
@@ -60,6 +68,7 @@ class InputForm extends Component {
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
+							<i class="material-icons prefix indigo-text">playlist_add</i>
 							<input
 								id="monthly-customers"
 								type="number"
@@ -72,6 +81,7 @@ class InputForm extends Component {
 					</div>
 					<div className="row">
 						<div className="input-field col s12">
+							<i class="material-icons prefix indigo-text">attach_money</i>
 							<input
 								id="monthly-sales"
 								type="number"
@@ -90,17 +100,69 @@ class InputForm extends Component {
 				>
 					Forecast
 				</button>
-				<p>
-					You could kicking back with{' '}
+				<div className="divider" style={{ margin: '3em' }} />
+
+				<h4>
+					You could be kicking back with{' '}
 					{this.state.futureVisitors.toLocaleString()} visitors,{' '}
 					{this.state.futureLeads.toLocaleString()} leads, and{' '}
 					{this.state.futureCustomers.toLocaleString()} new customers each
-					month!
-				</p>
-				<p>
+					month.
+				</h4>
+				<h4>
 					That's worth about ${this.state.futureAnnualSales.toLocaleString()} in
 					sales over the next 12 months!
-				</p>
+				</h4>
+
+				<div className="divider" style={{ margin: '3em' }} />
+
+				<div className="row">
+					<div className="col s12 m4">
+						<div className="center">
+							<i className="material-icons indigo-text" style={style.largeIcon}>
+								show_chart
+							</i>
+							<h5>
+								Attract {this.state.futureVisitors.toLocaleString()} Visitors
+							</h5>
+							<p className="light center">
+								Wow! Isn't that amazing? Shoot us a message to find out how
+								we'll accelerate your growth into the stratosphere.
+							</p>
+						</div>
+					</div>
+					<div className="col s12 m4">
+						<div className="center">
+							<i className="material-icons indigo-text" style={style.largeIcon}>
+								contact_mail
+							</i>
+							<h5>
+								Convert {this.state.futureLeads.toLocaleString()} New Leads
+							</h5>
+							<p className="light center">
+								Wow! Isn't that amazing? Shoot us a message to find out how
+								we'll accelerate your growth into the stratosphere.
+							</p>
+						</div>
+					</div>
+					<div className="col s12 m4">
+						<div className="center">
+							<i className="material-icons indigo-text" style={style.largeIcon}>
+								{' '}playlist_add
+							</i>
+							<h5>
+								Win Over {this.state.futureCustomers.toLocaleString()} New
+								Customers
+							</h5>
+							<p className="light center">
+								Wow! Isn't that amazing? Shoot us a message to find out how
+								we'll accelerate your growth into the stratosphere.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				{/*  end JSX tag */}
 			</div>
 		);
 	}
